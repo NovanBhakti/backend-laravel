@@ -22,6 +22,7 @@ class CategoryController extends Controller
         $data = $request->all();
         Category::create($data);
         return redirect()->route('category.index');
+        // return $request->all();
     }
 
     public function create()
