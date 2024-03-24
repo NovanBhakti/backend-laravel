@@ -18,5 +18,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        //category
+        \App\Models\Category::factory(4)->create();
+        //product
+        \App\Models\Product::factory(20)->create();
+
+        $this->call([
+            UserSeeder::class,
+        ]);
     }
 }
