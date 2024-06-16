@@ -31,8 +31,13 @@ class AuthController extends Controller
          $token = $user->createToken('auth_token')->plainTextToken;
 
          return response()->json(['status'=>'success', 'token' => $token, 'user' => $user],200);
+    }
 
-
+    //logout api
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(['status'=>'success', 'message' => 'Log Out'],200);
     }
 
 }

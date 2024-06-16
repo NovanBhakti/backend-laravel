@@ -38,11 +38,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text"
-                                    class="form-control @error('name')
-                                is-invalid
-                            @enderror"
-                                    name="name">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" id="name" required>
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -52,10 +49,7 @@
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea name="description" cols="100" rows="5"
-                                    class="form-control @error('description')
-                                 is-invalid
-                             @enderror">
-                             </textarea>
+                                    class="form-control @error('description') is-invalid @enderror" id="description" required></textarea>
                                 @error('description')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -64,11 +58,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Price</label>
-                                <input type="number"
-                                    class="form-control @error('price')
-                                is-invalid
-                            @enderror"
-                                    name="price">
+                                <input type="number" class="form-control @error('price') is-invalid @enderror"
+                                    name="price" id="price" required>
+                                <i>ex: input 20 -> 2000</i>
                                 @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -77,34 +69,29 @@
                             </div>
                             <div class="form-group">
                                 <label>Stock</label>
-                                <input type="number"
-                                    class="form-control @error('stock')
-                                is-invalid
-                            @enderror"
-                                    name="stock">
+                                <input type="number" class="form-control @error('stock') is-invalid @enderror"
+                                    name="stock" id="stock" required>
                                 @error('stock')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-
                             <div class="form-group">
                                 <label class="form-label">Category</label>
                                 <select class="form-control selectric @error('category_id') is-invalid @enderror"
-                                    name="category_id">
+                                    name="category_id" id="category_id" required>
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label>Photo Product</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control" name="image"
-                                        @error('image') is-invalid @enderror>
+                                    <input type="file" class="form-control" name="image" id="image"
+                                        @error('image') is-invalid @enderror required>
                                 </div>
                                 @error('image')
                                     <div class="invalid-feedback">
@@ -128,28 +115,56 @@
                                 </div>
                             </div>
                             {{-- is favorite  --}}
-                            <div class="form-group"></div>
-                            <label>Is Favorite</label>
-                            <div class="selectgroup selectgroup-pills">
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="is_favorite" value="1" class="selectgroup-input"
-                                        checked="">
-                                    <span class="selectgroup-button selectgroup-button-icon">Yes</span>
-                                </label>
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="is_favorite" value="0" class="selectgroup-input">
-                                    <span class="selectgroup-button selectgroup-button-icon">No</span>
-                                </label>
+                            <div class="form-group">
+                                <label>Is Favorite</label>
+                                <div class="selectgroup selectgroup-pills">
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="is_favorite" value="1" class="selectgroup-input"
+                                            checked="">
+                                        <span class="selectgroup-button selectgroup-button-icon">Yes</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="is_favorite" value="0" class="selectgroup-input">
+                                        <span class="selectgroup-button selectgroup-button-icon">No</span>
+                                    </label>
+                                </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Submit</button>
                             </div>
+                        </div>
                     </form>
+
+
                 </div>
 
             </div>
         </section>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitBtn = document.getElementById('submit-btn');
+            const requiredFields = ['name', 'description', 'price', 'stock', 'category_id', 'image'];
+
+            function checkFields() {
+                let allFilled = true;
+                requiredFields.forEach(field => {
+                    const input = document.getElementById(field);
+                    if (!input.value || (input.type === 'file' && input.files.length === 0)) {
+                        allFilled = false;
+                    }
+                });
+                submitBtn.disabled = !allFilled;
+            }
+
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field);
+                input.addEventListener('input', checkFields);
+            });
+
+            checkFields();
+        });
+    </script>
 @endsection
 
 @push('scripts')

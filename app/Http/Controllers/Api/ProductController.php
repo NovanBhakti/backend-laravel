@@ -11,13 +11,14 @@ class ProductController extends Controller
     //index product
     public function index()
     {
-        $product = Product::paginate(10);
+        $product = Product::where('is_available', 1)->get();
+        $product->load('category');
         return response()->json([
             'status' => 'success',
             'message' => 'List Data Product',
-            'data' => [
+            'data' =>
                 $product
-            ]
+
         ], 200);
     }
 }

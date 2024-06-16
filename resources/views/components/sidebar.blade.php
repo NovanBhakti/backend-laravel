@@ -31,7 +31,7 @@
             <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Product</span></a>
                 <ul class="dropdown-menu">
-                    <li class='{{ Request::is('category') ? 'active' : '' }}'>
+                    <li class='{{ Request::is('product') ? 'active' : '' }}'>
                         <a class="nav-link" href="{{ route('product.index') }}">All Products</a>
                     </li>
 
@@ -46,8 +46,19 @@
 
                 </ul>
             </li>
-
-
-
+            <li class="nav-item dropdown ">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Others</span></a>
+                <ul class="dropdown-menu">
+                    <li class='{{ Request::is('discount') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ route('discount.index') }}">Discount</a>
+                    </li>
+                    <li class='{{ Request::is('tax') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ route('tax.index') }}">Tax</a>
+                    </li>
+                    <li class='{{ Request::is('service') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ route('service.index') }}">Service Charge</a>
+                    </li>
+                </ul>
+            </li>
     </aside>
 </div>

@@ -19,5 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::post('logout', [\App\Http\Controllers\Api\AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::apiResource('/products', \App\Http\Controllers\Api\ProductController::class)->middleware('auth:sanctum');
 Route::apiResource('/categories', \App\Http\Controllers\Api\CategoryController::class)->middleware('auth:sanctum');
+Route::post('/save-order', [\App\Http\Controllers\Api\OrderController::class, 'saveOrder'])->middleware('auth:sanctum');
+Route::get('/orders', [\App\Http\Controllers\Api\OrderController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/discounts', [\App\Http\Controllers\Api\DiscountController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/taxes', [\App\Http\Controllers\Api\TaxController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/service-charges', [\App\Http\Controllers\Api\ServiceChargeController::class, 'index'])->middleware('auth:sanctum');

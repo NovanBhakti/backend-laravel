@@ -20,17 +20,17 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Categories</div>
+                    <div class="breadcrumb-item">Tax</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Categories</h2>
+                <h2 class="section-title">Taxes</h2>
 
 
 
                 <div class="card">
-                    <form action="{{ route('category.store') }}" method="POST">
+                    <form action="{{ route('tax.store') }}" method="POST">
                         @csrf
                         <div class="card-header">
                             <h4>Input Text</h4>
@@ -38,16 +38,37 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text"
-                                    class="form-control @error('name')
-                                is-invalid
-                            @enderror"
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     name="name" id="name" required>
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Tax Percentage</label>
+                                <input type="text" class="form-control @error('value') is-invalid @enderror"
+                                    name="value" id="value" required>
+                                @error('values')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <div class="selectgroup w-100">
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="status" value="active" class="selectgroup-input"
+                                            checked="">
+                                        <span class="selectgroup-button">Active</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="status" value="inactive" class="selectgroup-input">
+                                        <span class="selectgroup-button">Inactive</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-right">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Advanced Forms')
+@section('title', 'Edit User')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -20,25 +20,26 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Users</div>
+                    <div class="breadcrumb-item">Service Charge</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Users</h2>
+                <h2 class="section-title">Service Charges</h2>
 
 
 
                 <div class="card">
-                    <form action="{{ route('user.store') }}" method="POST">
+                    <form action="{{ route('service.update', $serviceCharges) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text"
+                                <input type="text" value="{{ $serviceCharges->name }}"
                                     class="form-control @error('name')
                                 is-invalid
                             @enderror"
@@ -50,97 +51,72 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email"
-                                    class="form-control @error('email')
+                                <label>Description</label>
+                                <input type="text" value="{{ $serviceCharges->description }}"
+                                    class="form-control @error('description')
                                 is-invalid
                             @enderror"
-                                    name="email" id="email" required>
-                                @error('email')
+                                    name="description" id="description" required>
+                                @error('description')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-lock"></i>
-                                        </div>
-                                    </div>
-                                    <input type="password"
-                                        class="form-control @error('password')
-                                is-invalid
-                            @enderror"
-                                        name="password" id="password">
-                                </div>
-                                @error('password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="number" class="form-control" name="phone" id="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Roles</label>
+                                <label class="form-label">Type</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="roles" value="ADMIN" class="selectgroup-input"
-                                            checked="">
-                                        <span class="selectgroup-button">Admin</span>
+                                        <input type="radio" name="type" value="percentage" class="selectgroup-input"
+                                            @if ($serviceCharges->type == 'percentage') checked @endif checked="">
+                                        <span class="selectgroup-button">Percentage</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="roles" value="STAFF" class="selectgroup-input">
-                                        <span class="selectgroup-button">Staff</span>
+                                        <input type="radio" name="type" value="fixed" class="selectgroup-input"
+                                            @if ($serviceCharges->type == 'fixed') checked @endif>
+                                        <span class="selectgroup-button">Fixed</span>
                                     </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="roles" value="USER" class="selectgroup-input">
-                                        <span class="selectgroup-button">User</span>
-                                    </label>
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input type="number" step="0.01" value="{{ $serviceCharges->value }}"
+                                    class="form-control @error('value')
+                                is-invalid
+                            @enderror"
+                                    name="value" id="value" required>
+                                @error('value')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <div class="selectgroup w-100">
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="status" value="active" class="selectgroup-input"
+                                            @if ($serviceCharges->status == 'active') checked @endif checked="">
+                                        <span class="selectgroup-button">Active</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio" name="status" value="inactive" class="selectgroup-input"
+                                            @if ($serviceCharges->status == 'inactive') checked @endif>
+                                        <span class="selectgroup-button">Inactive</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary" id="submit-btn" disabled>Submit</button>
+                            <button class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
 
             </div>
         </section>
-
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const submitBtn = document.getElementById('submit-btn');
-            const requiredFields = ['name', 'email', 'password', 'phone'];
-
-            function checkFields() {
-                let allFilled = true;
-                requiredFields.forEach(field => {
-                    const input = document.getElementById(field);
-                    if (!input.value) {
-                        allFilled = false;
-                    }
-                });
-                submitBtn.disabled = !allFilled;
-            }
-
-            requiredFields.forEach(field => {
-                const input = document.getElementById(field);
-                input.addEventListener('input', checkFields);
-            });
-
-            // Initial check to enable/disable button on page load
-            checkFields();
-        });
-    </script>
 @endsection
 
 @push('scripts')

@@ -43,6 +43,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'is_available' => 'required|boolean',
             'is_favorite' => 'required|boolean',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $product = new Product();
         $product->name = $request->name;
@@ -56,8 +57,8 @@ class ProductController extends Controller
 
         if($request->hasFile('image')){
             $image = $request->file('image');
-            $image->storeAs('public/products', $product->id . '-'. $product->name . '.' . $image->getClientOriginalExtension());
-            $product->image = $product->id . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/products', $product->id .  '.' . $image->getClientOriginalExtension());
+            $product->image = 'storage/products/' . $product->id . '.' . $image->getClientOriginalExtension();
             $product->save();
         }
         return redirect()->route('product.index');
@@ -95,8 +96,8 @@ class ProductController extends Controller
 
         if($request->hasFile('image')){
             $image = $request->file('image');
-            $image->storeAs('public/products', $product->id . '-'. $product->name . '.' . $image->getClientOriginalExtension());
-            $product->image = $product->id . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/products', $product->id . '.' . $image->getClientOriginalExtension());
+            $product->image = 'storage/products/' . $product->id . '.' . $image->getClientOriginalExtension();
             $product->save();
         }
         return redirect()->route('product.index');
