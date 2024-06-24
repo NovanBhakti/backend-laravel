@@ -11,7 +11,7 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">{{ loginTimeAgo() }}</div>
+                <div class="dropdown-title"></div>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item has-icon text-danger"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
