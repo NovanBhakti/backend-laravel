@@ -21,12 +21,24 @@
                     <div class="breadcrumb-item">All Product</div>
                 </div>
             </div>
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="section-body">
                 <div class="row">
                     {{-- <div class="col-12">
                         @include('layouts.alert')
                     </div> --}}
                 </div>
+
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">

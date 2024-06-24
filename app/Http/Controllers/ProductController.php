@@ -106,8 +106,16 @@ class ProductController extends Controller
     //destroy
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect()->route('product.index');
+        try {
+            $product = Product::findOrFail($id);
+            $product->delete();
+            return redirect()->route('product.index')->with('success', 'Product deleted successfully');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->route('product.index')->with('error', 'Cannot delete product because it is associated with order items.');
+            }
+
+            return redirect()->route('product.index')->with('error', 'An error occurred while trying to delete the product.');
+        }
     }
 }
