@@ -33,7 +33,7 @@
                     <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
-                            <h4>Input Text</h4>
+                            {{-- <h4>Input Text</h4> --}}
                         </div>
                         <div class="card-body">
                             <div class="form-group">
@@ -87,18 +87,18 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Photo Product</label>
                                 <div class="col-sm-9">
                                     <input type="file" class="form-control" name="image" id="image"
-                                        @error('image') is-invalid @enderror required>
+                                        @error('image') is-invalid @enderror>
                                 </div>
                                 @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             {{-- status --}}
                             <div class="form-group">
                                 <label>Status</label>
@@ -144,13 +144,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const submitBtn = document.getElementById('submit-btn');
-            const requiredFields = ['name', 'description', 'price', 'stock', 'category_id', 'image'];
+            const requiredFields = ['name', 'description', 'price', 'stock', 'category_id'];
 
             function checkFields() {
                 let allFilled = true;
                 requiredFields.forEach(field => {
                     const input = document.getElementById(field);
-                    if (!input.value || (input.type === 'file' && input.files.length === 0)) {
+                    if (!input.value) {
                         allFilled = false;
                     }
                 });

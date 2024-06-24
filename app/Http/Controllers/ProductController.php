@@ -43,7 +43,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'is_available' => 'required|boolean',
             'is_favorite' => 'required|boolean',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $product = new Product();
         $product->name = $request->name;

@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ],
                 },
                 options: {
-                    legend: { display: false },
+                    legend: { display: true },
                 },
             });
             var legendHtml = chart.generateLegend();

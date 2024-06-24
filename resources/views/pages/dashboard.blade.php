@@ -208,8 +208,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4>Top Caetgory</h4>
-
+                            <h4>Top Category</h4>
                         </div>
                         <div class="card-body">
                             <canvas id="myChart3" height="195"></canvas>
@@ -217,32 +216,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Recent Activities</h4>
 
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart2" height="193"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Recent Activities</h4>
-
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart2" height="193"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </section>
     </div>
 @endsection

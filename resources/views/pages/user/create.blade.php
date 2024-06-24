@@ -96,11 +96,11 @@
                                     </label>
                                     <label class="selectgroup-item">
                                         <input type="radio" name="roles" value="STAFF" class="selectgroup-input">
-                                        <span class="selectgroup-button">Staff</span>
+                                        <span class="selectgroup-button">Manager</span>
                                     </label>
                                     <label class="selectgroup-item">
                                         <input type="radio" name="roles" value="USER" class="selectgroup-input">
-                                        <span class="selectgroup-button">User</span>
+                                        <span class="selectgroup-button">Cashier</span>
                                     </label>
 
                                 </div>
