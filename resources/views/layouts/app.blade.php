@@ -14,6 +14,14 @@
 
 
     @stack('style')
+    <style>
+        .btn:disabled {
+            cursor: not-allowed;
+            background-color: #ccc;
+            color: #666;
+            border-color: #666;
+        }
+    </style>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">

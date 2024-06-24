@@ -2062,12 +2062,7 @@ tr:first-child > td > .fc-day-grid-event {
   font-weight: 700;
 }
 
-.btn:disabled {
-    cursor: not-allowed;
-    background-color: #ccc; /* Warna latar belakang untuk tombol yang dinonaktifkan */
-    color: #666;
-    border-color: #666; /* Warna teks untuk tombol yang dinonaktifkan */
-}
+
 @media (max-width: 575.98px) {
   .wizard-steps {
     display: block;
