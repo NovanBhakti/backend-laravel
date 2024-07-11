@@ -60,7 +60,6 @@
                                 <label>Price</label>
                                 <input type="number" class="form-control @error('price') is-invalid @enderror"
                                     name="price" id="price" required>
-                                <i>ex: input 20 -> 2000</i>
                                 @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
