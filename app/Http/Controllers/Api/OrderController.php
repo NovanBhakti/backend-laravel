@@ -65,4 +65,16 @@ class OrderController extends Controller
             'data' => $orders,
         ],200);
     }
+
+    public function getOrderItems($orderId) {
+        $orderItems = OrderItem::where('order_id', $orderId)->get(); // Ganti dengan query yang sesuai dengan database Anda
+        return response()->json(['status' => 'success',
+            'data' => $orderItems], 200);
+    }
+
+    public function getOrdersWithItems() {
+        $orders = Order::with('items')->get(); // Pastikan Anda telah mengatur relasi di model Order
+        return response()->json(['status' => 'success',
+        'data' => $orders], 200);
+    }
 }

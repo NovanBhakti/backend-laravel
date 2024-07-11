@@ -23,4 +23,8 @@ class Order extends Model
         'transaction_time',
         'is_sync',
     ];
+
+    public function items() {
+        return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
 }

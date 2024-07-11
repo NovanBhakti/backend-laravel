@@ -48,7 +48,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price =  $request->price;
+        $product->price =  $request->price/100;
         $product->category_id = $request->category_id;
         $product->stock =  $request->stock;
         $product->is_available =  $request->is_available;
@@ -87,7 +87,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price =  $request->price;
+        $product->price =  $request->price/100;
         $product->category_id = $request->category_id;
         $product->stock =  $request->stock;
         $product->is_available =  $request->is_available;
